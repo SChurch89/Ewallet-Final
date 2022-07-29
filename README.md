@@ -10,6 +10,8 @@ Product Owner-Patrick Harju
 
 Software Configuration Manager  Stephanie Church
 
+Professor Invite https://github.com/SChurch89/Ewallet-Final/invitations
+
 
 
 Features
