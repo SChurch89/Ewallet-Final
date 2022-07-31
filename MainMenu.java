@@ -17,8 +17,10 @@ public class MainMenu implements ActionListener{
 	JLabel welcome = new JLabel("Welcome to the EWallet App");
 	JButton addExpense = new JButton("Add Monthly Expense");
 	JButton addMonthlyIncome = new JButton("Add Monthly Income");
+	JButton addMonthlySaving = new JButton("Add Monthly Savings");
 	JButton printExpenseReport = new JButton("Print Expense Report");
 	JButton printIncomeReport = new JButton("Print Income Report");
+	Button printSavingReport = new JButton("Print Savings Report");
 	JRadioButton Dollar = new JRadioButton("Dollars (USD)");
 	JRadioButton Euro = new JRadioButton("Euros (EUR)");
 	JRadioButton Yen = new JRadioButton("Yen (JPY)");
@@ -28,6 +30,7 @@ public class MainMenu implements ActionListener{
 	ButtonGroup buttonGroup = new ButtonGroup();
 	JFrame income = new JFrame();
 	JFrame expenses = new JFrame();
+	JFrame saving = new JFrame();
 	JPanel incomePanel = new JPanel();
 	JLabel incomeType = new JLabel("Income Type");
 	JLabel incomeAmount = new JLabel("Income Amount");
@@ -46,6 +49,13 @@ public class MainMenu implements ActionListener{
 	JTextField expenseMonthBox = new JTextField(10);
 	JPanel expenseButtonPanel = new JPanel();
 	JButton addExpenseButton = new JButton("Add Expense");
+	JPanel savingPanel = new JPanel();
+	JLabel savingAmount = new JLabel("Savings Amount");
+	JLabel saving = new JLabel("Savings Month");
+	JTextField savingAmountBox = new JTextField(10);
+	JTextField savingMonthBox = new JTextField(10);
+	JPanel savingButtonPanel = new JPanel();
+	JButton addSavingButton = new JButton("Add Savings");
 
 	
 	EWallet eWallet = new EWallet();
@@ -92,15 +102,21 @@ public class MainMenu implements ActionListener{
 
 		addMonthlyIncome.addActionListener(new AddIncomeListener());
 		
+		addMonthlySaving.addActionListener(new AddSavingListener());
+		
 
 		printExpenseReport.addActionListener(new PrintExpenseReportListener());
 
 		printIncomeReport.addActionListener(new PrintIncomeReportListener());
+		
+		printSavingReport.addActionListener(new PrintSavingReportListener());
 
 		buttonPanel.add(addExpense);
 		buttonPanel.add(addMonthlyIncome);
+		buttonPanel.add(addMonthlySaving);
 		buttonPanel.add(printExpenseReport);
 		buttonPanel.add(printIncomeReport);
+		buttonPanel.add(printSavingReport);
 
 		welcomePanel.add(welcome);
 		topPanel.add(welcomePanel);
@@ -117,6 +133,7 @@ public class MainMenu implements ActionListener{
 		panel.setBackground(Color.BLUE);
 		
 		createAddIncome();
+		createAddSaving();
 		createAddExpense();
 		
 		frame.add(panel);
@@ -136,6 +153,20 @@ public class MainMenu implements ActionListener{
 		income.add(incomePanel);
 		income.setSize(200, 300);
 		addIncomeButton.addActionListener(new AddIncomeButtonListener());
+		
+		
+	}
+	public void createAddSaving()  {
+		savingPanel.setLayout(new GridLayout(7, 1));
+		savingPanel.add(savingAmount);
+		savingPanel.add(savingAmountBox);
+		savingPanel.add(savinsMonth);
+		savingPanel.add(savingMonthBox);
+		savingButtonPanel.add(addsavingButton);
+		savingPanel.add(savingButtonPanel);
+		saving.add(incomePanel);
+		saving.setSize(200, 300);
+		addSavingButton.addActionListener(new AddSavingButtonListener());
 		
 		
 	}
@@ -182,6 +213,31 @@ public class MainMenu implements ActionListener{
 		}
 		
 	}
+	private class AddSavingListener implements ActionListener  {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			saving.setVisible(true);
+			
+		}
+		
+	}
+	private class AddSavingButtonListener implements ActionListener  {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			double amount = Double.parseDouble(savingAmountBox.getText());
+			int month = Integer.parseInt(savingMonthBox.getText());
+			Income inc = new Income(amount, month);
+			System.out.println(inc);
+			eWallet.addsaving(inc, month);
+			savingAmountBox.setText("");
+			savingMonthBox.setText("");
+			saving.setVisible(false);
+			
+		}
+		
+	}
 	private class AddExpenseListener implements ActionListener  {
 
 		@Override
@@ -214,6 +270,16 @@ public class MainMenu implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			String report = eWallet.printIncome();
+			JOptionPane.showMessageDialog(null, report);
+			
+		}
+		
+	}
+	private class PrintSavingReportListener implements ActionListener  {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			String report = eWallet.printSaving
 			JOptionPane.showMessageDialog(null, report);
 			
 		}
