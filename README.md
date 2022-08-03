@@ -10,6 +10,8 @@ Product Owner-Patrick Harju
 
 Software Configuration Manager  Stephanie Church
 
+Software Developer-Bryan FLynn
+
 
 
 Features
@@ -28,9 +30,9 @@ Features
 
 6.)    As  a user I would like to view a detailed report of all expenses, and summary information for expenses public void PrintExpensereport(); Patrick
 
-7.)    As  a user I would like to view a detailed report of all income, and summary information for income// public void PrintIncomereport();
+7.)    As  a user I would like to view a detailed report of all income, and summary information for income// public void PrintIncomereport(); Bryan
 
-8.)    As  a user I would like to view a detailed report of income of a certain type, and summary information for income.  public void PrintIncomereportbyTpe();
+8.)    As  a user I would like to view a detailed report of income of a certain type, and summary information for income.  public void PrintIncomereportbyTpe(); Bryan
 
 9.)    As  a user I would like to view a detailed report of expense of a certain type , and summary information for expenses. public void PrintExpensebyType(); Mark
 
@@ -44,6 +46,6 @@ Features
 
 14.) As a user I would like to provide an item and a price and get an estimate in number of months needed to save up to buy this item. (based on current monthly saving.  public int whenCanIBuy(String itemname,double  price); Stephanie 
 
-15.) updates monthly savings based on latest added income and expenses. This is an internal function not called by the users.  Bonus: what is the most efficient way to call it (when?)?
+15.) updates monthly savings based on latest added income and expenses. This is an internal function not called by the users.  Bonus: what is the most efficient way to call it (when?)? Bryan
 
               public void updateMonthlySavings();
