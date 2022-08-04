@@ -1,3 +1,4 @@
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -16,10 +17,10 @@ public class MainMenu implements ActionListener{
 	JLabel welcome = new JLabel("Welcome to the EWallet App");
 	JButton addExpense = new JButton("Add Monthly Expense");
 	JButton addMonthlyIncome = new JButton("Add Monthly Income");
-	JButton addMonthlySaving = new JButton("Add Monthly Savings");
+	JButton printOverallReport = new JButton("Print Overall Report");
 	JButton printExpenseReport = new JButton("Print Expense Report");
 	JButton printIncomeReport = new JButton("Print Income Report");
-	Button printSavingReport = new JButton("Print Savings Report");
+	JButton printSavingsReport = new JButton("Print Savings Report");
 	JRadioButton Dollar = new JRadioButton("Dollars (USD)");
 	JRadioButton Euro = new JRadioButton("Euros (EUR)");
 	JRadioButton Yen = new JRadioButton("Yen (JPY)");
@@ -29,7 +30,7 @@ public class MainMenu implements ActionListener{
 	ButtonGroup buttonGroup = new ButtonGroup();
 	JFrame income = new JFrame();
 	JFrame expenses = new JFrame();
-	JFrame saving = new JFrame();
+	JFrame savings = new JFrame();
 	JPanel incomePanel = new JPanel();
 	JLabel incomeType = new JLabel("Income Type");
 	JLabel incomeAmount = new JLabel("Income Amount");
@@ -101,21 +102,21 @@ public class MainMenu implements ActionListener{
 
 		addMonthlyIncome.addActionListener(new AddIncomeListener());
 		
-		addMonthlySaving.addActionListener(new AddSavingListener());
+		printOverallReport.addActionListener(new PrintOverallReportListener());
 		
 
 		printExpenseReport.addActionListener(new PrintExpenseReportListener());
 
 		printIncomeReport.addActionListener(new PrintIncomeReportListener());
 		
-		printSavingReport.addActionListener(new PrintSavingReportListener());
+		printSavingsReport.addActionListener(new PrintSavingsReportListener());
 
 		buttonPanel.add(addExpense);
 		buttonPanel.add(addMonthlyIncome);
-		buttonPanel.add(addMonthlySaving);
+		buttonPanel.add(printOverallReport);
 		buttonPanel.add(printExpenseReport);
 		buttonPanel.add(printIncomeReport);
-		buttonPanel.add(printSavingReport);
+		buttonPanel.add(printSavingsReport);
 
 		welcomePanel.add(welcome);
 		topPanel.add(welcomePanel);
@@ -132,7 +133,7 @@ public class MainMenu implements ActionListener{
 		panel.setBackground(Color.BLUE);
 		
 		createAddIncome();
-		createAddSaving();
+		//createAddSaving();
 		createAddExpense();
 		
 		frame.add(panel);
@@ -155,20 +156,20 @@ public class MainMenu implements ActionListener{
 		
 		
 	}
-	public void createAddSaving()  {
+	/*public void createAddSaving()  {
 		savingPanel.setLayout(new GridLayout(7, 1));
 		savingPanel.add(savingAmount);
 		savingPanel.add(savingAmountBox);
-		savingPanel.add(savinsMonth);
 		savingPanel.add(savingMonthBox);
-		savingButtonPanel.add(addsavingButton);
+		savingPanel.add(savingMonthBox);
+		savingPanel.add(savingButtonPanel);
 		savingPanel.add(savingButtonPanel);
 		saving.add(incomePanel);
 		saving.setSize(200, 300);
 		addSavingButton.addActionListener(new AddSavingButtonListener());
 		
 		
-	}
+	}*/
 	public void createAddExpense()  {
 		expensePanel.setLayout(new GridLayout(7, 1));
 		expensePanel.add(expenseType);
@@ -201,9 +202,9 @@ public class MainMenu implements ActionListener{
 			String type = incomeTypeBox.getText();
 			double amount = Double.parseDouble(incomeAmountBox.getText());
 			int month = Integer.parseInt(incomeMonthBox.getText());
-			Income inc = new Income(type, amount, month);
+			Income inc = new Income(type, amount, month - 1);
 			System.out.println(inc);
-			eWallet.addIncome(inc, month);
+			eWallet.addIncome(inc, month - 1);
 			incomeTypeBox.setText("");
 			incomeAmountBox.setText("");
 			incomeMonthBox.setText("");
@@ -225,14 +226,17 @@ public class MainMenu implements ActionListener{
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
+			/*String type = incomeTypeBox.getText();
 			double amount = Double.parseDouble(savingAmountBox.getText());
 			int month = Integer.parseInt(savingMonthBox.getText());
-			Income inc = new Income(amount, month);
+			Income inc = new Savings(type, amount, month);
 			System.out.println(inc);
-			eWallet.addsaving(inc, month);
+			eWallet.addSaving(inc, month);
+			JLabel savingTypeBox;
+			savingTypeBox.setText("");
 			savingAmountBox.setText("");
 			savingMonthBox.setText("");
-			saving.setVisible(false);
+			saving.setVisible(false);*/
 			
 		}
 		
@@ -253,9 +257,9 @@ public class MainMenu implements ActionListener{
 			String type = expenseTypeBox.getText();
 			double amount = Double.parseDouble(expenseAmountBox.getText());
 			int month = Integer.parseInt(expenseMonthBox.getText());
-			Expense ex = new Expense(type, amount, month);
+			Expense ex = new Expense(type, amount, month - 1);
 			System.out.println(ex);
-			eWallet.addExpense(ex, month);
+			eWallet.addExpense(ex, month -1);
 			expenseTypeBox.setText("");
 			expenseAmountBox.setText("");
 			expenseMonthBox.setText("");
@@ -274,11 +278,11 @@ public class MainMenu implements ActionListener{
 		}
 		
 	}
-	private class PrintSavingReportListener implements ActionListener  {
+	private class PrintSavingsReportListener implements ActionListener  {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			String report = eWallet.printSaving
+			String report = eWallet.printSavings();
 			JOptionPane.showMessageDialog(null, report);
 			
 		}
@@ -289,6 +293,16 @@ public class MainMenu implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			String report = eWallet.printExpense();
+			JOptionPane.showMessageDialog(null, report);
+			
+		}
+		
+	}
+	private class PrintOverallReportListener implements ActionListener  {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			String report = eWallet.printAll();
 			JOptionPane.showMessageDialog(null, report);
 			
 		}
@@ -308,3 +322,11 @@ public class MainMenu implements ActionListener{
  }
 
 }
+
+
+
+
+
+
+
+
