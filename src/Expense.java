@@ -1,4 +1,6 @@
 public class Expense {
+	private int UserID;
+	private int Expense_trans_num;
 	private String type;
 	private double amount;
 	private int month;
@@ -35,5 +37,21 @@ public class Expense {
 	
 	public String toString() {
 		return type+" $" + String.format("%.2f", amount);
+	}
+
+	public int getUserID() {
+		return UserID;
+	}
+
+	public void setUserID(int userID) {
+		UserID = userID;
+	}
+
+	public int getExpense_trans_num() {
+		return Expense_trans_num;
+	}
+
+	public void setExpense_trans_num(int expense_trans_num) {
+		Expense_trans_num = expense_trans_num;
 	}
 }

@@ -1,5 +1,7 @@
 
 public class Savings {
+		private int UserID;
+		private int Savings_trans_num;
 		private String type;
 		private double amount;
 		private int month;
@@ -27,6 +29,22 @@ public class Savings {
 		
 		public String toString() {
 			return type+" $" + String.format("%.2f", amount);
+		}
+
+		public int getUserID() {
+			return UserID;
+		}
+
+		public void setUserID(int userID) {
+			UserID = userID;
+		}
+
+		public int getSavings_trans_num() {
+			return Savings_trans_num;
+		}
+
+		public void setSavings_trans_num(int savings_trans_num) {
+			Savings_trans_num = savings_trans_num;
 		}
 
 	}
