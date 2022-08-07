@@ -65,6 +65,13 @@ public class EWallet {
 	public void addSaving(Income inc, int month) {
 		
 	}
+	
+	public int whenCanIBuy(String itemname, double  price) {
+		int months = 0;
+		double amountLeft = price - totalSavings();
+		months = (int) (amountLeft / totalIncome());
+		return months;
+	}
 
 	public String printSavings() {
 		String s="SAVINGS REPORT\n\n";
