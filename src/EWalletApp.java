@@ -33,14 +33,9 @@ public class EWalletApp {
        
 
         public static void main(String[] args) {
+        	
                 login();
         
-        GuiFile myFrame = new GuiFile();
-
-	      myFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	      myFrame.pack();
-	      myFrame.setVisible(true);
-	      
         }
 
         public static void login() {

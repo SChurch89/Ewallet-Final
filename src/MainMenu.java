@@ -22,6 +22,7 @@ public class MainMenu implements ActionListener{
 	JLabel welcome = new JLabel("Welcome to the EWallet App");
 	JButton addExpense = new JButton("Add Monthly Expense");
 	JButton addMonthlyIncome = new JButton("Add Monthly Income");
+	JButton uploadExpenses = new JButton("Upload Expenses");
 
 
 //JButton addSaving = new JButton("Add Monthly Saving");
@@ -113,6 +114,8 @@ public MainMenu() {
 	buttonGroup.add(Yen);
 	
 	addExpense.addActionListener(new AddExpenseListener());
+	
+	uploadExpenses.addActionListener(new UploadExpensesListener());
 
 	addMonthlyIncome.addActionListener(new AddIncomeListener());
 
@@ -128,6 +131,8 @@ public MainMenu() {
 //printSavingsReport.addActionListener(new PrintSavingsReportListener());
 
 buttonPanel.add(addExpense);
+
+buttonPanel.add(uploadExpenses);
 
 buttonPanel.add(addMonthlyIncome);
 
@@ -155,6 +160,7 @@ panel.setBackground(Color.BLUE);
 createAddIncome();
 //createAddSaving();
 createAddExpense();
+
 
 frame.add(panel);
 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -338,6 +344,22 @@ int dollar = Integer.parseInt(amount);
 double canadianDollar = dollar * 1.29;
 
 }*/
+
+}
+
+private class UploadExpensesListener implements ActionListener  {
+
+@Override
+public void actionPerformed(ActionEvent e) {
+	
+	  GuiFile myFrame = new GuiFile();
+
+      myFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+      myFrame.pack();
+      myFrame.setVisible(true);
+      
+	
+}
 
 }
 
