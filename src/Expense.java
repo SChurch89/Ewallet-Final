@@ -1,9 +1,15 @@
+import java.util.ArrayList;
+
 public class Expense {
 	private int UserID;
 	private int Expense_trans_num;
 	private String type;
 	private double amount;
 	private int month;
+	
+	//ArrayList<Expenses> ExpenseList = null:
+	//	public void add(Expenses) {//https://www.youtube.com/watch?v=TTiLkD7zqWA
+	//}
 	
 	public Expense(String type, double amount, int month) {
 		this.type = type;

@@ -1,12 +1,12 @@
 
-public class Savings {
+public class Saving {
 		private int UserID;
 		private int Savings_trans_num;
 		private String type;
 		private double amount;
 		private int month;
 		
-		public Savings (String type, double amount, int month) {
+		public Saving (String type, double amount, int month) {
 			this.amount = amount;
 			this.month = month;
 		}
