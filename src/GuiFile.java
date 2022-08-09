@@ -32,8 +32,8 @@ public class GuiFile extends JFrame implements ActionListener{
 
 	      // Set frame's title
 	      setTitle("Upload Expenses");
-
-	      outputLabel = new JLabel("File contents:");
+	      
+	      outputLabel = new JLabel("<html>File contents<br>(Must be .txt file in form ExpenseType:Amount:ExpenseMonth)</html>");
 	      selectedFileLabel = new JLabel("Selected file:");
 
 	      selectedFileField = new JTextField(20);
@@ -97,8 +97,9 @@ public class GuiFile extends JFrame implements ActionListener{
 	   @Override
 	   public void actionPerformed(ActionEvent event) {
 	      FileInputStream fileByteStream = null; // File input stream
-	      Scanner inFS = null;                   // Scanner object
+	      Scanner inFS = null; 					// Scanner object
 	      String readLine;                       // Input from file
+	      String trial;
 	      File readFile = null;                  // Input file
 	      int fileChooserVal;                    // File chooser
 
@@ -123,8 +124,10 @@ public class GuiFile extends JFrame implements ActionListener{
 
 	               // Read until end-of-file
 	               while (inFS.hasNext()) {
+	            	  // trial = inFS.useDelimiter(":").next();
 	                  readLine = inFS.nextLine();
 	                  outputArea.append(readLine + "\n");
+	                  //System.out.println(scnr.useDelimiter(":").next());
 	               }
 
 	            } catch (IOException e) {
