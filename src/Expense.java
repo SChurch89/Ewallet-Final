@@ -5,16 +5,17 @@ public class Expense {
 	private int Expense_trans_num;
 	private String type;
 	private double amount;
-	private int month;
+	private String month;
 	
 	//ArrayList<Expenses> ExpenseList = null:
 	//	public void add(Expenses) {//https://www.youtube.com/watch?v=TTiLkD7zqWA
 	//}
 	
-	public Expense(String type, double amount, int month) {
+	public Expense(String type, double amount, String month) {
 		this.type = type;
 		this.amount = amount;
 		this.month = month;
+		System.out.println(type + amount + month + "blepop");//TEST LINE
 	}
 
 	public String getType() {

@@ -24,7 +24,7 @@ public class GuiFile extends JFrame implements ActionListener{
 	   private JTextField selectedFileField; // Holds name of file
 	   private JFileChooser fileChooser;     // Enables user to select file
 	   private JButton openFileButton;       // Trigger file open
-
+	   
 	   /* Constructor creates GUI components and adds GUI components
 	      using a GridBagLayout. */
 	   GuiFile() {
@@ -101,6 +101,10 @@ public class GuiFile extends JFrame implements ActionListener{
 	     // String readLine;                       // Input from file
 	      String expenseLine;
 	      String [] expArr;
+	      String type = null;
+	      double amount = 0;
+	      String month = null;
+		  Expense expense ;//= new Expense(type, amount, month);
 	      File readFile = null;                  // Input file
 	      int fileChooserVal;                    // File chooser
 
@@ -128,9 +132,21 @@ public class GuiFile extends JFrame implements ActionListener{
 	            	  //trial = inFS.useDelimiter(":").next();
 	            	  expenseLine = inFS.next();
 	            	  expArr = expenseLine.split(":");
-	            	  for (int i = 0; i < expArr.length; i++) {
+	            	  for (int i = 0; i < expArr.length; i+=3) {
 	            	  System.out.println(expArr[i]);
-	            	  }
+	            	  type = expArr[i];
+	            	  	}
+	            	  for (int i = 1; i < expArr.length; i+=3) {
+		            	  System.out.println(expArr[i]);
+		            	  amount = Double.parseDouble(expArr[i]);
+		            	  }
+	            	  for (int i = 2; i < expArr.length; i+=3) {
+		            	  System.out.println(expArr[i]);
+		            	  month = expArr[i];
+		            	  }
+	            	  expense = new Expense(type, amount, month);
+	            	  
+	            	  System.out.println(type + amount + month);
 	                  //readLine = inFS.nextLine();
 	                  outputArea.append(expenseLine + "\n");
 	                  //System.out.println(scnr.useDelimiter(":").next());
