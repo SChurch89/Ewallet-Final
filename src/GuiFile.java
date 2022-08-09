@@ -33,7 +33,7 @@ public class GuiFile extends JFrame implements ActionListener{
 	      // Set frame's title
 	      setTitle("Upload Expenses");
 	      
-	      outputLabel = new JLabel("<html>File contents<br>(Must be .txt file in form ExpenseType:Amount:ExpenseMonth)</html>");
+	      outputLabel = new JLabel("<html>File contents<br>(Must be .txt file in form ExpenseType:Amount:ExpenseMonth)<br>(Start new line for each expense)</html>");
 	      selectedFileLabel = new JLabel("Selected file:");
 
 	      selectedFileField = new JTextField(20);
@@ -98,8 +98,9 @@ public class GuiFile extends JFrame implements ActionListener{
 	   public void actionPerformed(ActionEvent event) {
 	      FileInputStream fileByteStream = null; // File input stream
 	      Scanner inFS = null; 					// Scanner object
-	      String readLine;                       // Input from file
-	      String trial;
+	     // String readLine;                       // Input from file
+	      String expenseLine;
+	      String [] expArr;
 	      File readFile = null;                  // Input file
 	      int fileChooserVal;                    // File chooser
 
@@ -124,9 +125,14 @@ public class GuiFile extends JFrame implements ActionListener{
 
 	               // Read until end-of-file
 	               while (inFS.hasNext()) {
-	            	  // trial = inFS.useDelimiter(":").next();
-	                  readLine = inFS.nextLine();
-	                  outputArea.append(readLine + "\n");
+	            	  //trial = inFS.useDelimiter(":").next();
+	            	  expenseLine = inFS.next();
+	            	  expArr = expenseLine.split(":");
+	            	  for (int i = 0; i < expArr.length; i++) {
+	            	  System.out.println(expArr[i]);
+	            	  }
+	                  //readLine = inFS.nextLine();
+	                  outputArea.append(expenseLine + "\n");
 	                  //System.out.println(scnr.useDelimiter(":").next());
 	               }
 
