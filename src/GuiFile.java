@@ -6,6 +6,9 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.lang.reflect.Array;
+import java.nio.file.Files;
+import java.util.ArrayList;
 import java.util.Scanner;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
@@ -25,6 +28,8 @@ public class GuiFile extends JFrame implements ActionListener{
 	   private JFileChooser fileChooser;     // Enables user to select file
 	   private JButton openFileButton;       // Trigger file open
 	   
+	   Expense arr[] ;//= new Expense[100];
+	   
 	   /* Constructor creates GUI components and adds GUI components
 	      using a GridBagLayout. */
 	   GuiFile() {
@@ -33,7 +38,7 @@ public class GuiFile extends JFrame implements ActionListener{
 	      // Set frame's title
 	      setTitle("Upload Expenses");
 	      
-	      outputLabel = new JLabel("<html>File contents<br>(Must be .txt file in form ExpenseType:Amount:ExpenseMonth)<br>(Start new line for each expense)</html>");
+	      outputLabel = new JLabel("<html>Expenses<br>(Must be .txt file in form ExpenseType:Amount:MonthNumber)<br>(Start new line for each expense)</html>");
 	      selectedFileLabel = new JLabel("Selected file:");
 
 	      selectedFileField = new JTextField(20);
@@ -98,15 +103,19 @@ public class GuiFile extends JFrame implements ActionListener{
 	   public void actionPerformed(ActionEvent event) {
 	      FileInputStream fileByteStream = null; // File input stream
 	      Scanner inFS = null; 					// Scanner object
+	     // Scanner inFS2 = null;
 	     // String readLine;                       // Input from file
 	      String expenseLine;
 	      String [] expArr;
 	      String type = null;
 	      double amount = 0;
-	      String month = null;
-		  Expense expense ;//= new Expense(type, amount, month);
+	      int month = 0;
+	      //Expense arr[] = new Expense[6];
+	      int j = 0;
+		 // Expense expense ;//= new Expense(type, amount, month);
 	      File readFile = null;                  // Input file
 	      int fileChooserVal;                    // File chooser
+	      int lineCount = 0;
 
 	      // Open file chooser dialog and get the file to open
 	      fileChooserVal = fileChooser.showOpenDialog(this);
@@ -121,9 +130,21 @@ public class GuiFile extends JFrame implements ActionListener{
 	         // Ensure file is valid
 	         if (readFile.canRead()) {
 	            try {
-	               fileByteStream = new FileInputStream(readFile);
-	               inFS = new Scanner(fileByteStream);
-
+	               //fileByteStream = new FileInputStream(readFile);
+	               inFS = new Scanner(new FileInputStream(readFile));
+	               //inFS2 = new Scanner(fileByteStream);
+	               
+	               while(inFS.hasNext()) {
+	            	   inFS.nextLine();
+	            	   lineCount++;
+	               }
+	               inFS.close();
+	               inFS = null;
+	               //inFS.remove();
+	               inFS = new Scanner(new FileInputStream(readFile));
+	               
+	               //int lineCount = Files.lines(inFS).count();
+	               arr = new Expense[lineCount];
 	               // Clear output area
 	               outputArea.setText(""); 
 
@@ -133,25 +154,33 @@ public class GuiFile extends JFrame implements ActionListener{
 	            	  expenseLine = inFS.next();
 	            	  expArr = expenseLine.split(":");
 	            	  for (int i = 0; i < expArr.length; i+=3) {
-	            	  System.out.println(expArr[i]);
+	            	  //System.out.println(expArr[i]);
 	            	  type = expArr[i];
 	            	  	}
 	            	  for (int i = 1; i < expArr.length; i+=3) {
-		            	  System.out.println(expArr[i]);
+		            	  //System.out.println(expArr[i]);
 		            	  amount = Double.parseDouble(expArr[i]);
 		            	  }
 	            	  for (int i = 2; i < expArr.length; i+=3) {
-		            	  System.out.println(expArr[i]);
-		            	  month = expArr[i];
+		            	 // System.out.println(expArr[i]);
+		            	  month = Integer.parseInt(expArr[i]);
 		            	  }
-	            	  expense = new Expense(type, amount, month);
-	            	  
-	            	  System.out.println(type + amount + month);
+	            	  //expense = new Expense(type, amount, month);
+	            	 arr[j] = new Expense(type, amount, month);
+	            
+	            	 j++;
 	                  //readLine = inFS.nextLine();
-	                  outputArea.append(expenseLine + "\n");
+	                  //outputArea.append(expenseLine + "\n");
 	                  //System.out.println(scnr.useDelimiter(":").next());
 	               }
-
+	               //for ( int k = 0; k < arr.length; k++) {
+	            	//   System.out.println(arr[k]);
+	               //}
+	               Expense [] array = getExpenseArr();
+	               for (int o = 0; o < array.length; o++) {
+	               outputArea.append(array[o] + "\n");
+	               }
+	               
 	            } catch (IOException e) {
 	               outputArea.append("\n\nError occurred while creating file stream! " + e.getMessage());
 	            }
@@ -161,6 +190,12 @@ public class GuiFile extends JFrame implements ActionListener{
 	            JOptionPane.showMessageDialog(this, "Can't read file!");
 	         }
 	      }
+	   }
+	   
+	   public Expense [] getExpenseArr() {
+		  
+		  return arr;
+		   
 	   }
 
 	 
