@@ -160,7 +160,7 @@ public class GuiFile extends JFrame implements ActionListener{
 		            	  month = Integer.parseInt(expArr[i]);
 		            	  }
 	            	  //expense = new Expense(type, amount, month);
-	            	 arr[j] = new Expense(type, amount, month);
+	            	 arr[j] = new Expense(type, amount, (month - 1));
 	            
 	            	 j++;
 	                  //readLine = inFS.nextLine();
