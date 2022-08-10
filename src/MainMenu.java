@@ -283,7 +283,7 @@ public void actionPerformed(ActionEvent e) {
 public int whenCanIBuy(String itemname, double  price) {
 	int months = 0;
 	double amountLeft = price - eWallet.totalSavings();
-	months = (int) (amountLeft / eWallet.totalIncome());
+	months = (int) (amountLeft / (eWallet.totalIncome() - eWallet.totalExpenses()));
 	return months;
 }
 
