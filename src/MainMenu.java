@@ -41,6 +41,7 @@ public class MainMenu implements ActionListener{
 	JFrame income = new JFrame();
 	JFrame expenses = new JFrame();
 	JFrame savings = new JFrame();
+	JFrame buyFrame = new JFrame();
 	JPanel incomePanel = new JPanel();
 	JLabel incomeType = new JLabel("Income Type");
 	JLabel incomeAmount = new JLabel("Income Amount");
@@ -73,6 +74,7 @@ public class MainMenu implements ActionListener{
 using a GridBagLayout. */
   
 EWallet eWallet = new EWallet();
+private final JButton whenCanIBuy = new JButton("When Can I Buy");
 
 
 public MainMenu() {
@@ -118,6 +120,8 @@ public MainMenu() {
 	uploadExpenses.addActionListener(new UploadExpensesListener());
 
 	addMonthlyIncome.addActionListener(new AddIncomeListener());
+	
+	whenCanIBuy.addActionListener(new WhenBuyListener());
 
 	
 	//addMonthlySaving.addActionListener(new AddSavingListener());
@@ -154,6 +158,7 @@ buttonPanel.setLayout(new GridLayout(2, 2));
 panel.setLayout(new BorderLayout());
 panel.add(topPanel, BorderLayout.NORTH);
 panel.add(buttonPanel, BorderLayout.SOUTH);
+buttonPanel.add(whenCanIBuy);
 
 panel.setBackground(Color.BLUE);
 
@@ -162,7 +167,7 @@ createAddIncome();
 createAddExpense();
 
 
-frame.add(panel);
+frame.getContentPane().add(panel);
 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 frame.setVisible(true);
 }
@@ -176,7 +181,7 @@ incomePanel.add(incomeMonth);
 incomePanel.add(incomeMonthBox);
 incomeButtonPanel.add(addIncomeButton);
 incomePanel.add(incomeButtonPanel);
-income.add(incomePanel);
+income.getContentPane().add(incomePanel);
 income.setSize(200, 300);
 addIncomeButton.addActionListener(new AddIncomeButtonListener());
 
@@ -206,7 +211,7 @@ expensePanel.add(expenseMonth);
 expensePanel.add(expenseMonthBox);
 expenseButtonPanel.add(addExpenseButton);
 expensePanel.add(expenseButtonPanel);
-expenses.add(expensePanel);
+expenses.getContentPane().add(expensePanel);
 expenses.setSize(200, 300);
 addExpenseButton.addActionListener(new AddExpenseButtonListener());
 
@@ -221,6 +226,19 @@ public void actionPerformed(ActionEvent e) {
 }
 
 }
+
+private class WhenBuyListener implements ActionListener  {
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		WhenBuyGUI buyFrame = new WhenBuyGUI();
+		buyFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		buyFrame.pack();
+		buyFrame.setVisible(true);
+		
+	}
+}
+
 private class AddIncomeButtonListener implements ActionListener  {
 
 @Override
