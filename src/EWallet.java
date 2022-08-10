@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class EWallet {
 	private ArrayList<Month> months;                    //Declare income  ArrayList
@@ -89,6 +90,11 @@ public class EWallet {
 		s+= printExpense()+ "\n";
 		s+= printSavings()+ "\n";
 		return s;
+	}
+	public String getMonth(int month) {
+		
+		return MONTHS[month].toString();
+
 	}
 }
 
