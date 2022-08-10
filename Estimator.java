@@ -1,0 +1,12 @@
+
+public class Estimator {
+	private double savings = Savings.getAmount;
+	private double income = Income.getAmount;
+	private int months;
+	
+	public int whenCanIBuy(String itemname, double price) {
+		int amountLeft = price - savings;
+		months = price / income;
+		return months;
+	}
+}

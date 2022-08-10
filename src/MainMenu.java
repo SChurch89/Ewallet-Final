@@ -41,6 +41,7 @@ public class MainMenu implements ActionListener{
 	JFrame income = new JFrame();
 	JFrame expenses = new JFrame();
 	JFrame savings = new JFrame();
+	JFrame buyFrame = new JFrame();
 	JPanel incomePanel = new JPanel();
 	JLabel incomeType = new JLabel("Income Type");
 	JLabel incomeAmount = new JLabel("Income Amount");
@@ -73,9 +74,17 @@ public class MainMenu implements ActionListener{
 using a GridBagLayout. */
   
 EWallet eWallet = new EWallet();
+private final JButton whenCanIBuy = new JButton("When Can I Buy");
+private final JPanel panel_1 = new JPanel();
+private final JTextField itmName = new JTextField();
+private final JTextField itmPrice = new JTextField();
+private final JButton buyButton = new JButton("When Can I Buy?");
+private final JLabel lblNewLabel = new JLabel("Item Name:");
+private final JLabel lblPrice = new JLabel("Price:");
 
 
 public MainMenu() {
+	panel_1.setVisible(false);
 
 	frame.setTitle("Main Menu");
 	frame.setSize(600, 300);
@@ -118,6 +127,8 @@ public MainMenu() {
 	uploadExpenses.addActionListener(new UploadExpensesListener());
 
 	addMonthlyIncome.addActionListener(new AddIncomeListener());
+	
+	whenCanIBuy.addActionListener(new WhenBuyListener());
 
 	
 	//addMonthlySaving.addActionListener(new AddSavingListener());
@@ -154,6 +165,7 @@ buttonPanel.setLayout(new GridLayout(2, 2));
 panel.setLayout(new BorderLayout());
 panel.add(topPanel, BorderLayout.NORTH);
 panel.add(buttonPanel, BorderLayout.SOUTH);
+buttonPanel.add(whenCanIBuy);
 
 panel.setBackground(Color.BLUE);
 
@@ -162,7 +174,53 @@ createAddIncome();
 createAddExpense();
 
 
-frame.add(panel);
+frame.getContentPane().add(panel);
+panel.add(panel_1, BorderLayout.CENTER);
+GridBagLayout gbl_panel_1 = new GridBagLayout();
+gbl_panel_1.columnWidths = new int[]{0, 0, 0, 105, 0, 0, 27, 54, 128, 0, 0};
+gbl_panel_1.rowHeights = new int[]{19, 0, 0, 0, 0};
+gbl_panel_1.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
+gbl_panel_1.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+panel_1.setLayout(gbl_panel_1);
+GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
+gbc_lblNewLabel.insets = new Insets(0, 0, 5, 5);
+gbc_lblNewLabel.anchor = GridBagConstraints.EAST;
+gbc_lblNewLabel.gridx = 7;
+gbc_lblNewLabel.gridy = 1;
+panel_1.add(lblNewLabel, gbc_lblNewLabel);
+itmName.setColumns(10);
+GridBagConstraints gbc_itmName = new GridBagConstraints();
+gbc_itmName.fill = GridBagConstraints.HORIZONTAL;
+gbc_itmName.insets = new Insets(0, 0, 5, 5);
+gbc_itmName.gridx = 8;
+gbc_itmName.gridy = 1;
+panel_1.add(itmName, gbc_itmName);
+GridBagConstraints gbc_buyButton = new GridBagConstraints();
+gbc_buyButton.anchor = GridBagConstraints.WEST;
+gbc_buyButton.insets = new Insets(0, 0, 5, 0);
+gbc_buyButton.gridx = 9;
+gbc_buyButton.gridy = 1;
+
+buyButton.addActionListener(new ActionListener() {
+	public void actionPerformed(ActionEvent e) {
+		System.out.println(whenCanIBuy(itmName.getText(), Double.parseDouble(itmPrice.getText())));
+	}
+});
+
+panel_1.add(buyButton, gbc_buyButton);
+GridBagConstraints gbc_lblPrice = new GridBagConstraints();
+gbc_lblPrice.insets = new Insets(0, 0, 5, 5);
+gbc_lblPrice.anchor = GridBagConstraints.EAST;
+gbc_lblPrice.gridx = 7;
+gbc_lblPrice.gridy = 2;
+panel_1.add(lblPrice, gbc_lblPrice);
+GridBagConstraints gbc_itmPrice = new GridBagConstraints();
+gbc_itmPrice.fill = GridBagConstraints.HORIZONTAL;
+gbc_itmPrice.insets = new Insets(0, 0, 5, 5);
+gbc_itmPrice.gridx = 8;
+gbc_itmPrice.gridy = 2;
+itmPrice.setColumns(10);
+panel_1.add(itmPrice, gbc_itmPrice);
 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 frame.setVisible(true);
 }
@@ -176,7 +234,7 @@ incomePanel.add(incomeMonth);
 incomePanel.add(incomeMonthBox);
 incomeButtonPanel.add(addIncomeButton);
 incomePanel.add(incomeButtonPanel);
-income.add(incomePanel);
+income.getContentPane().add(incomePanel);
 income.setSize(200, 300);
 addIncomeButton.addActionListener(new AddIncomeButtonListener());
 
@@ -206,7 +264,7 @@ expensePanel.add(expenseMonth);
 expensePanel.add(expenseMonthBox);
 expenseButtonPanel.add(addExpenseButton);
 expensePanel.add(expenseButtonPanel);
-expenses.add(expensePanel);
+expenses.getContentPane().add(expensePanel);
 expenses.setSize(200, 300);
 addExpenseButton.addActionListener(new AddExpenseButtonListener());
 
@@ -221,6 +279,34 @@ public void actionPerformed(ActionEvent e) {
 }
 
 }
+
+public int whenCanIBuy(String itemname, double  price) {
+	int months = 0;
+	double amountLeft = price - eWallet.totalSavings();
+	months = (int) (amountLeft / eWallet.totalIncome());
+	return months;
+}
+
+private class WhenBuyListener implements ActionListener  {
+
+	
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if (panel_1.isVisible() == false) {
+			panel_1.setVisible(true);
+		}
+		else {
+			panel_1.setVisible(false);
+		}
+//		System.out.println(whenCanIBuy("thing", 1000)); // 
+//		WhenBuyGUI buyFrame = new WhenBuyGUI();
+//		buyFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//		buyFrame.pack();
+//		buyFrame.setVisible(true);
+		
+	}
+}
+
 private class AddIncomeButtonListener implements ActionListener  {
 
 @Override
@@ -362,6 +448,7 @@ public void actionPerformed(ActionEvent e) {
 }
 
 }
+
 
 }
 
