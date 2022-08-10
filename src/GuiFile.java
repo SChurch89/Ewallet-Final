@@ -103,14 +103,12 @@ public class GuiFile extends JFrame implements ActionListener{
 	   public void actionPerformed(ActionEvent event) {
 	      FileInputStream fileByteStream = null; // File input stream
 	      Scanner inFS = null; 					// Scanner object
-	     // Scanner inFS2 = null;
 	     // String readLine;                       // Input from file
 	      String expenseLine;
 	      String [] expArr;
 	      String type = null;
 	      double amount = 0;
 	      int month = 0;
-	      //Expense arr[] = new Expense[6];
 	      int j = 0;
 		 // Expense expense ;//= new Expense(type, amount, month);
 	      File readFile = null;                  // Input file
@@ -132,7 +130,6 @@ public class GuiFile extends JFrame implements ActionListener{
 	            try {
 	               //fileByteStream = new FileInputStream(readFile);
 	               inFS = new Scanner(new FileInputStream(readFile));
-	               //inFS2 = new Scanner(fileByteStream);
 	               
 	               while(inFS.hasNext()) {
 	            	   inFS.nextLine();
@@ -154,15 +151,12 @@ public class GuiFile extends JFrame implements ActionListener{
 	            	  expenseLine = inFS.next();
 	            	  expArr = expenseLine.split(":");
 	            	  for (int i = 0; i < expArr.length; i+=3) {
-	            	  //System.out.println(expArr[i]);
-	            	  type = expArr[i];
+	            		  type = expArr[i];
 	            	  	}
 	            	  for (int i = 1; i < expArr.length; i+=3) {
-		            	  //System.out.println(expArr[i]);
 		            	  amount = Double.parseDouble(expArr[i]);
 		            	  }
 	            	  for (int i = 2; i < expArr.length; i+=3) {
-		            	 // System.out.println(expArr[i]);
 		            	  month = Integer.parseInt(expArr[i]);
 		            	  }
 	            	  //expense = new Expense(type, amount, month);

@@ -124,9 +124,9 @@ public MainMenu() {
 
 //printOverallReport.addActionListener(new PrintOverallReportListener());
 
-//printExpenseReport.addActionListener(new PrintExpenseReportListener());
+printExpenseReport.addActionListener(new PrintExpenseReportListener());
 
-//printIncomeReport.addActionListener(new PrintIncomeReportListener());
+printIncomeReport.addActionListener(new PrintIncomeReportListener());
 
 //printSavingsReport.addActionListener(new PrintSavingsReportListener());
 
@@ -354,7 +354,7 @@ public void actionPerformed(ActionEvent e) {
 	
 	  GuiFile myFrame = new GuiFile();
 
-      myFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+      myFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
       myFrame.pack();
       myFrame.setVisible(true);
       
