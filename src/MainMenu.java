@@ -135,9 +135,9 @@ public MainMenu() {
 
 //printOverallReport.addActionListener(new PrintOverallReportListener());
 
-//printExpenseReport.addActionListener(new PrintExpenseReportListener());
+printExpenseReport.addActionListener(new PrintExpenseReportListener());
 
-//printIncomeReport.addActionListener(new PrintIncomeReportListener());
+printIncomeReport.addActionListener(new PrintIncomeReportListener());
 
 //printSavingsReport.addActionListener(new PrintSavingsReportListener());
 
@@ -421,17 +421,64 @@ public void actionPerformed(ActionEvent e) {
 
 }
 
-//@Override
-public void actionPerformed(ActionEvent e) { //consider renaming to "CanadianDollarButton or CanadianDollarBtn"
-/*if(e.getSource() == CanadianDollar) { //To convert USD to CAD, multiply given value in USD by 1.29
-//String amount = currentBalance.getText();
-Integer.parseInt(amount);
-int dollar = Integer.parseInt(amount);
-double canadianDollar = dollar * 1.29;
+@Override
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == CanadianDollarButton) {
+			String amount = currentBalance.getText();
+			Integer.parseInt(amount);
+			int Dollar = Integer.parseInt(amount);
+			double canadianDollar = Dollar * 1.29;
+			String convertedAmount = String.format("%.2f", canadianDollar);
+			currentBalance.setText(convertedAmount);
 
-}*/
+		}
+		if (e.getSource() == AustralianDollarButton) { 
+			String amount = currentBalance.getText();
+			Integer.parseInt(amount);
+			int Dollar = Integer.parseInt(amount);
+			double australianDollar = Dollar * 1.44;
+			String convertedAmount = String.format("%.2f", australianDollar);
+			currentBalance.setText(convertedAmount);
 
-}
+		}
+		if (e.getSource() == PoundSterlingButton) { 
+			String amount = currentBalance.getText();
+			Integer.parseInt(amount);
+			int Dollar = Integer.parseInt(amount);
+			double poundSterling = Dollar * 0.83;
+			String convertedAmount = String.format("%.2f", poundSterling);
+			currentBalance.setText(convertedAmount);
+
+		}
+		if (e.getSource() == CanadianDollarButton) { 
+			String amount = currentBalance.getText();
+			Integer.parseInt(amount);
+			int Dollar = Integer.parseInt(amount);
+			double canadianDollar = Dollar * 1.29;
+			String convertedAmount = String.format("%.2f", canadianDollar);
+			currentBalance.setText(convertedAmount);
+
+		}
+		if (e.getSource() == EuroButton) { 
+			String amount = currentBalance.getText();
+			Integer.parseInt(amount);
+			int Dollar = Integer.parseInt(amount);
+			double Euro = Dollar * 0.98;
+			String convertedAmount = String.format("%.2f", Euro);
+			currentBalance.setText(convertedAmount);
+
+		}
+		if (e.getSource() == YenButton) { 
+			String amount = currentBalance.getText();
+			Integer.parseInt(amount);
+			int Dollar = Integer.parseInt(amount);
+			double Yen = Dollar * 1.29;
+			String convertedAmount = String.format("%.2f", Yen);
+			currentBalance.setText(convertedAmount);
+
+		}
+		
+	}
 
 private class UploadExpensesListener implements ActionListener  {
 
@@ -440,7 +487,7 @@ public void actionPerformed(ActionEvent e) {
 	
 	  GuiFile myFrame = new GuiFile();
 
-      myFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+      myFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
       myFrame.pack();
       myFrame.setVisible(true);
       

@@ -12,6 +12,7 @@ Software Configuration Manager  Stephanie Church
 
 Software Developer-Bryan FLynn
 
+Software Developer-Alexander Cramer
 
 
 Features
@@ -22,13 +23,13 @@ Features
 
 2.)    As a user I'd like to add a monthly income so I can track and report my income all year - 3pts public void addMonthlyIncome (Wage W); Stephanie
 
-3.)    As  a user I would like to view a detailed report of all expenses, income, and summary information Patrick
+3.)    As  a user I would like to view a detailed report of all expenses, income, and summary information Patrick, Alexander
 
 4.)    summary information include : total income, total income for each type, total income for each month, total expense, total expense for each type, Mark
 
 5.)    total savings (total income- total expenses) to date, if the total savings are less than zero it should be reported as total new debt.        public void PrintFullreport(); Stephanie
 
-6.)    As  a user I would like to view a detailed report of all expenses, and summary information for expenses public void PrintExpensereport(); Patrick
+6.)    As  a user I would like to view a detailed report of all expenses, and summary information for expenses public void PrintExpensereport(); Patrick, Alexander
 
 7.)    As  a user I would like to view a detailed report of all income, and summary information for income// public void PrintIncomereport(); Bryan
 
@@ -40,7 +41,7 @@ Features
 
 11.)  As a user I would like to view my current balance in a different currency Bonus : try to use the same convert function to convert from foreign currency to USD. public Currency convertForeignCurrency(Currency C, double amount); Patrick
 
-12.) As a user I would like to load multiple expenses from an external file all at once returning true if loaded successfully and false otherwise public boolean loadExpenseFile(String filePath);
+12.) As a user I would like to load multiple expenses from an external file all at once returning true if loaded successfully and false otherwise public boolean loadExpenseFile(String filePath); Alexander
 
 13.) As a user I would like to load multiple income from an external file all at once returning true if loaded successfully and false otherwise public boolean loadIncomeFile(String filePath);
 

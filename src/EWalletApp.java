@@ -130,8 +130,6 @@ public class EWalletApp {
 
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-                frame.setVisible(true);
-
                 usernamePanel.add(usernameLabel);
 
                 passwordPanel.add(passwordLabel);
@@ -149,6 +147,10 @@ public class EWalletApp {
                 panel.add(buttonPanel);
 
                 frame.add(panel);
+                
+                frame.setVisible(true);
+
+                frame.pack();
 
         }
 

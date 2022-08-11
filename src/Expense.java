@@ -17,7 +17,6 @@ public class Expense {
 		this.type = type;
 		this.amount = amount;
 		this.month = month;
-		//System.out.println(type + amount + month + "blepop");//TEST LINE
 	}
 
 	public String getType() {
