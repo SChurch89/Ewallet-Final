@@ -19,7 +19,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
-public class GuiFile extends JFrame implements ActionListener{
+public class GuiFile extends JFrame implements ActionListener{ 
 	   private JScrollPane scrollPane;       // Container adds scroll bar
 	   private JTextArea outputArea;         // Holds file output
 	   private JLabel selectedFileLabel;     // Label for file name
@@ -29,6 +29,7 @@ public class GuiFile extends JFrame implements ActionListener{
 	   private JButton openFileButton;       // Trigger file open
 	   
 	   Expense arr[] ;//= new Expense[100];
+	   private static ArrayList<Expense> arrList = new ArrayList<Expense>();
 	   
 	   /* Constructor creates GUI components and adds GUI components
 	      using a GridBagLayout. */
@@ -161,7 +162,10 @@ public class GuiFile extends JFrame implements ActionListener{
 		            	  }
 	            	  //expense = new Expense(type, amount, month);
 	            	 arr[j] = new Expense(type, amount, (month - 1));
-	            
+	            	 arrList.add(new Expense(type, amount, (month - 1)));
+	            	 System.out.println(arr[j]);
+	            	 System.out.println(arrList);
+	            	//list.set(arr[j], j);//FIXME
 	            	 j++;
 	                  //readLine = inFS.nextLine();
 	                  //outputArea.append(expenseLine + "\n");
@@ -173,9 +177,13 @@ public class GuiFile extends JFrame implements ActionListener{
 	               Expense [] array = getExpenseArr();
 	               for (int o = 0; o < array.length; o++) {
 	               outputArea.append(array[o] + "\n");
+	              // System.out.println(list);
+	               	System.out.println(array[o]);
 	               }
-	               
-	            } catch (IOException e) {
+	              
+	            }
+	            
+	            catch (IOException e) {
 	               outputArea.append("\n\nError occurred while creating file stream! " + e.getMessage());
 	            }
 	         }
@@ -184,6 +192,18 @@ public class GuiFile extends JFrame implements ActionListener{
 	            JOptionPane.showMessageDialog(this, "Can't read file!");
 	         }
 	      }
+	      
+	      for ( int k = 0; k < arr.length; k++) {
+          	   System.out.println(arr[k]);
+             }
+	      System.out.println(arrList);
+	      
+	   }
+	   
+	   public static ArrayList<Expense> getExpenseList(){
+		   
+		   return arrList;
+		   
 	   }
 	   
 	   public Expense [] getExpenseArr() {

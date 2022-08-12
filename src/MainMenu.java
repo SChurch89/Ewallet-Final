@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import javax.swing.*;
@@ -23,6 +24,7 @@ public class MainMenu implements ActionListener{
 	JButton addExpense = new JButton("Add Monthly Expense");
 	JButton addMonthlyIncome = new JButton("Add Monthly Income");
 	JButton uploadExpenses = new JButton("Upload Expenses");
+	JButton exportExpenses = new JButton("Export Expenses");
 
 
 //JButton addSaving = new JButton("Add Monthly Saving");
@@ -66,6 +68,7 @@ public class MainMenu implements ActionListener{
 	JTextField savingAmountBox = new JTextField(10);
 	JTextField savingMonthBox = new JTextField(10);
 	JPanel savingButtonPanel = new JPanel();
+	
 	JButton addSavingButton = new JButton("Add Savings");
 
 
@@ -84,10 +87,11 @@ private final JLabel lblPrice = new JLabel("Price:");
 
 
 public MainMenu() {
+	
 	panel_1.setVisible(false);
 
 	frame.setTitle("Main Menu");
-	frame.setSize(600, 300);
+	frame.setSize(800, 300);
 
 	JLabel balance = new JLabel("Current Balance");
 
@@ -125,6 +129,8 @@ public MainMenu() {
 	addExpense.addActionListener(new AddExpenseListener());
 	
 	uploadExpenses.addActionListener(new UploadExpensesListener());
+	
+	exportExpenses.addActionListener(new ExportExpensesListener());
 
 	addMonthlyIncome.addActionListener(new AddIncomeListener());
 	
@@ -144,6 +150,8 @@ printIncomeReport.addActionListener(new PrintIncomeReportListener());
 buttonPanel.add(addExpense);
 
 buttonPanel.add(uploadExpenses);
+
+buttonPanel.add(exportExpenses);
 
 buttonPanel.add(addMonthlyIncome);
 
@@ -492,10 +500,30 @@ public void actionPerformed(ActionEvent e) {
       myFrame.setVisible(true);
       
 	
-}
+	}
 
 }
 
+private class ExportExpensesListener implements ActionListener {
+
+@Override
+public void actionPerformed(ActionEvent e) {
+	System.out.println("boop");
+	
+	GuiFile gui = new GuiFile();
+	
+	//Expense [] bloop = gui.getExpenseArr();
+	
+	ArrayList<Expense> list = GuiFile.getExpenseList();
+	
+	System.out.println(list);
+	
+	//for(int i = 0; i < bloop.length; i++) {
+	//System.out.println(bloop[i]);
+	
+	//	}
+	}
+}
 
 }
 
