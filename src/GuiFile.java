@@ -163,8 +163,8 @@ public class GuiFile extends JFrame implements ActionListener{
 	            	  //expense = new Expense(type, amount, month);
 	            	 arr[j] = new Expense(type, amount, (month - 1));
 	            	 arrList.add(new Expense(type, amount, (month - 1)));
-	            	 System.out.println(arr[j]);
-	            	 System.out.println(arrList);
+	            	// System.out.println(arr[j]);
+	            	// System.out.println(arrList);
 	            	//list.set(arr[j], j);//FIXME
 	            	 j++;
 	                  //readLine = inFS.nextLine();
@@ -178,7 +178,7 @@ public class GuiFile extends JFrame implements ActionListener{
 	               for (int o = 0; o < array.length; o++) {
 	               outputArea.append(array[o] + "\n");
 	              // System.out.println(list);
-	               	System.out.println(array[o]);
+	               //	System.out.println(array[o]);
 	               }
 	              
 	            }
@@ -193,10 +193,10 @@ public class GuiFile extends JFrame implements ActionListener{
 	         }
 	      }
 	      
-	      for ( int k = 0; k < arr.length; k++) {
-          	   System.out.println(arr[k]);
-             }
-	      System.out.println(arrList);
+	   //   for ( int k = 0; k < arr.length; k++) {
+       //   	   System.out.println(arr[k]);
+       //      }
+	    //  System.out.println(arrList);
 	      
 	   }
 	   

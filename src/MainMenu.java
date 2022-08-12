@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -514,14 +515,41 @@ public void actionPerformed(ActionEvent e) {
 	
 	//Expense [] bloop = gui.getExpenseArr();
 	
+	String fileName = JOptionPane.showInputDialog(null,"Enter Name for File: ");
+	
 	ArrayList<Expense> list = GuiFile.getExpenseList();
 	
-	System.out.println(list);
+	try {
+		File exportFile = new File(fileName);
+		if (exportFile.createNewFile()) {
+			FileWriter myWriter = new FileWriter(exportFile);
+			
+			for(int i = 0; i < list.size(); i++) {
+				
+			myWriter.write("bleep");//iterate through ArrayList and write to file in format Type:Amount:Month
+			//exportFile.close();
+			myWriter.close();
+			}
+		}
+			else {
+				System.out.println("File already exists.");
+			}
+}
+	catch (Exception except) {
+		System.out.println("Error");
+	}
+	
+	//System.out.println(list);
 	
 	//for(int i = 0; i < bloop.length; i++) {
 	//System.out.println(bloop[i]);
 	
 	//	}
+	
+	
+	
+	
+	
 	}
 }
 
