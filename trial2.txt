@@ -1,7 +1,0 @@
-dog:50.0:3
-Groceries:350.0:7
-Rent:400.0:7
-CarPayment:150.0:7
-Groceries:280.0:8
-Rent:400.0:8
-CarPayment:150.0:8
