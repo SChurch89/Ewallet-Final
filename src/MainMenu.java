@@ -87,6 +87,7 @@ private final JButton buyButton = new JButton("When Can I Buy?");
 private final JLabel lblNewLabel = new JLabel("Item Name:");
 private final JLabel lblPrice = new JLabel("Price:");
 
+private static ArrayList<Expense> arrList = new ArrayList<Expense>();
 
 public MainMenu() {
 	
@@ -380,7 +381,8 @@ public void actionPerformed(ActionEvent e) {
 	double amount = Double.parseDouble(expenseAmountBox.getText());
 	int month = Integer.parseInt(expenseMonthBox.getText());
 	Expense ex = new Expense(type, amount, month - 1);
-	System.out.println(ex);
+	arrList.add(ex);
+	//System.out.println(ex);
 	eWallet.addExpense(ex, month -1);
 	expenseTypeBox.setText("");
 	expenseAmountBox.setText("");
@@ -531,15 +533,18 @@ public void actionPerformed(ActionEvent e) {
 			
 			//System.out.println("here");
 			
+			for(int j = 0; j < arrList.size(); j++) {
+				
+				myWriter.write(arrList.get(j).getType() + ":"+ arrList.get(j).getAmount() + ":" + (arrList.get(j).getMonth() +1) + "\n");
+
+			}
+			
 			for(int i = 0; i < list.size(); i++) {
 				
-			//list.get(i);
-			myWriter.write(list.get(i).getType() + ":"+ list.get(i).getAmount() + ":" + list.get(i).getMonth() + "\n");
+			myWriter.write(list.get(i).getType() + ":"+ list.get(i).getAmount() + ":" + (list.get(i).getMonth() +1) + "\n");
 			
-			//myWriter.write("bleep");//iterate through ArrayList and write to file in format Type:Amount:Month
-			//exportFile.close();
 			myWriter.flush();
-			//myWriter.close();
+			
 			}
 			myWriter.close();
 
