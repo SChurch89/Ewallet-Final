@@ -175,7 +175,7 @@ public class GuiFile extends JFrame implements ActionListener{
 	            	//   System.out.println(arr[k]);
 	               //}
 	               Expense [] array = getExpenseArr();
-	               for (int o = 0; o < array.length; o++) {
+	               for (int o = 0; o < array.length; o++) {//Use arr[] instead???
 	               outputArea.append(array[o] + "\n");
 	              // System.out.println(list);
 	               //	System.out.println(array[o]);

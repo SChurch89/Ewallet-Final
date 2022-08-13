@@ -3,6 +3,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 
 import java.awt.event.ActionListener;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileWriter;
@@ -509,7 +510,6 @@ private class ExportExpensesListener implements ActionListener {
 
 @Override
 public void actionPerformed(ActionEvent e) {
-	System.out.println("boop");
 	
 	GuiFile gui = new GuiFile();
 	
@@ -520,22 +520,35 @@ public void actionPerformed(ActionEvent e) {
 	ArrayList<Expense> list = GuiFile.getExpenseList();
 	
 	try {
-		File exportFile = new File(fileName);
+		
+		File exportFile = new File(fileName + ".txt");
+		
 		if (exportFile.createNewFile()) {
-			FileWriter myWriter = new FileWriter(exportFile);
+			
+			BufferedWriter myWriter = new BufferedWriter(new FileWriter(exportFile));
+			
+			//GuiFile gui = new GuiFile();
+			
+			//System.out.println("here");
 			
 			for(int i = 0; i < list.size(); i++) {
 				
-			myWriter.write("bleep");//iterate through ArrayList and write to file in format Type:Amount:Month
+			//list.get(i);
+			myWriter.write(list.get(i).getType() + ":"+ list.get(i).getAmount() + ":" + list.get(i).getMonth() + "\n");
+			
+			//myWriter.write("bleep");//iterate through ArrayList and write to file in format Type:Amount:Month
 			//exportFile.close();
-			myWriter.close();
+			myWriter.flush();
+			//myWriter.close();
 			}
+			myWriter.close();
+
 		}
 			else {
 				System.out.println("File already exists.");
 			}
 }
-	catch (Exception except) {
+	catch (IOException except) {
 		System.out.println("Error");
 	}
 	
