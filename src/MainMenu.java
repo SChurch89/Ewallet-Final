@@ -27,6 +27,8 @@ public class MainMenu implements ActionListener{
 	JButton addMonthlyIncome = new JButton("Add Monthly Income");
 	JButton uploadExpenses = new JButton("Upload Expenses");
 	JButton exportExpenses = new JButton("Export Expenses");
+	JButton uploadIncome = new JButton("Upload Income");
+	JButton exportIncome = new JButton("Export Income");
 
 
 //JButton addSaving = new JButton("Add Monthly Saving");
@@ -88,13 +90,15 @@ private final JLabel lblNewLabel = new JLabel("Item Name:");
 private final JLabel lblPrice = new JLabel("Price:");
 
 private static ArrayList<Expense> arrList = new ArrayList<Expense>();
+private static ArrayList<Income> arrList2 = new ArrayList<Income>();
+
 
 public MainMenu() {
 	
 	panel_1.setVisible(false);
 
 	frame.setTitle("Main Menu");
-	frame.setSize(800, 300);
+	frame.setSize(800, 400);
 
 	JLabel balance = new JLabel("Current Balance");
 
@@ -134,6 +138,10 @@ public MainMenu() {
 	uploadExpenses.addActionListener(new UploadExpensesListener());
 	
 	exportExpenses.addActionListener(new ExportExpensesListener());
+	
+	uploadIncome.addActionListener(new UploadIncomeListener());
+	
+	exportIncome.addActionListener(new ExportIncomeListener());
 
 	addMonthlyIncome.addActionListener(new AddIncomeListener());
 	
@@ -156,6 +164,10 @@ buttonPanel.add(uploadExpenses);
 
 buttonPanel.add(exportExpenses);
 
+buttonPanel.add(uploadIncome);
+
+buttonPanel.add(exportIncome);
+
 buttonPanel.add(addMonthlyIncome);
 
 //buttonPanel.add(addSaving);
@@ -171,7 +183,7 @@ topPanel.add(balancePanel);
 topPanel.add(currencyPanel);
 topPanel.setLayout(new GridLayout(3, 1));
 
-buttonPanel.setLayout(new GridLayout(2, 2));
+buttonPanel.setLayout(new GridLayout(3, 2));
 
 panel.setLayout(new BorderLayout());
 panel.add(topPanel, BorderLayout.NORTH);
@@ -326,7 +338,8 @@ public void actionPerformed(ActionEvent e) {
 	double amount = Double.parseDouble(incomeAmountBox.getText());
 	int month = Integer.parseInt(incomeMonthBox.getText());
 	Income inc = new Income(type, amount, month - 1);
-	System.out.println(inc);
+	arrList2.add(inc);
+	//System.out.println(inc);
 	eWallet.addIncome(inc, month - 1);
 	incomeTypeBox.setText("");
 	incomeAmountBox.setText("");
@@ -536,6 +549,85 @@ public void actionPerformed(ActionEvent e) {
 			for(int j = 0; j < arrList.size(); j++) {
 				
 				myWriter.write(arrList.get(j).getType() + ":"+ arrList.get(j).getAmount() + ":" + (arrList.get(j).getMonth() +1) + "\n");
+
+			}
+			
+			for(int i = 0; i < list.size(); i++) {
+				
+			myWriter.write(list.get(i).getType() + ":"+ list.get(i).getAmount() + ":" + (list.get(i).getMonth() +1) + "\n");
+			
+			myWriter.flush();
+			
+			}
+			myWriter.close();
+
+		}
+			else {
+				System.out.println("File already exists.");
+			}
+}
+	catch (IOException except) {
+		System.out.println("Error");
+	}
+	
+	//System.out.println(list);
+	
+	//for(int i = 0; i < bloop.length; i++) {
+	//System.out.println(bloop[i]);
+	
+	//	}
+	
+	
+	
+	
+	
+	}
+}
+
+private class UploadIncomeListener implements ActionListener  {
+
+@Override
+public void actionPerformed(ActionEvent e) {
+	
+	  GuiFileIncome myFrame = new GuiFileIncome();
+
+      myFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+      myFrame.pack();
+      myFrame.setVisible(true);
+      
+	
+	}
+
+}
+
+private class ExportIncomeListener implements ActionListener {
+
+@Override
+public void actionPerformed(ActionEvent e) {
+	
+	//GuiFile gui = new GuiFile();
+	
+	//Expense [] bloop = gui.getExpenseArr();
+	
+	String fileName = JOptionPane.showInputDialog(null,"Enter Name for File: ");
+	
+	ArrayList<Income> list = GuiFileIncome.getIncomeList();
+	
+	try {
+		
+		File exportFile = new File(fileName + ".txt");
+		
+		if (exportFile.createNewFile()) {
+			
+			BufferedWriter myWriter = new BufferedWriter(new FileWriter(exportFile));
+			
+			//GuiFile gui = new GuiFile();
+			
+			//System.out.println("here");
+			
+			for(int j = 0; j < arrList2.size(); j++) {
+				
+				myWriter.write(arrList2.get(j).getType() + ":"+ arrList2.get(j).getAmount() + ":" + (arrList2.get(j).getMonth() +1) + "\n");
 
 			}
 			
