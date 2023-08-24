@@ -1,52 +1,49 @@
-# Ewallet-Final
+Wallet-Final Project
+Welcome to the repository for the Wallet-Final project, an expense and income tracking system aimed at helping users manage their financial data efficiently. This project has been developed by a dedicated team with diverse roles, including Scrum Master, Product Owner, Software Configuration Manager, and Software Developers.
 
-ERD https://thestakeholders.atlassian.net/wiki/spaces/~62181f3e97d313006ba639ea/pages/363986945/ERD
+Project Information
+ERD: For a detailed understanding of the database structure, refer to the Entity-Relationship Diagram (ERD).
 
-SCM Plan https://thestakeholders.atlassian.net/wiki/spaces/~62181f3e97d313006ba639ea/pages/363692033/Template+Plan+3-Software-Configuration-Management-Plan-Template
+SCM Plan: The Software Configuration Management Plan detailing the version control and management strategies can be found here.
 
-Scrum Master-Mark Hamilton
-
-Product Owner-Patrick Harju
-
-Software Configuration Manager  Stephanie Church
-
-Software Developer-Bryan FLynn
-
-Software Developer-Alexander Cramer
-
-
+Team Members
+Scrum Master: Mark Hamilton
+Product Owner: Patrick Harju
+Software Configuration Manager: Stephanie Church
+Software Developer: Bryan Flynn
+Software Developer: Alexander Cramer
 Features
+Add Monthly Expense: Users can add monthly expenses to keep track of their financial outflows. (Developer: Mark)
 
-1.)    As a user I'd like to add a monthly expense so I can track and report my expenses - 3pts
+Add Monthly Income: Users can add monthly income to monitor their earnings throughout the year. (Developer: Stephanie)
 
-              public void addExpense (Expense Ex); Mark
+View Detailed Report: Users can view detailed reports of both expenses and income, including summary information. (Developers: Patrick, Alexander)
 
-2.)    As a user I'd like to add a monthly income so I can track and report my income all year - 3pts public void addMonthlyIncome (Wage W); Stephanie
+Summary Information: The summary includes total income, total income by type, total income per month, total expenses, and total expenses by type. (Developer: Mark)
 
-3.)    As  a user I would like to view a detailed report of all expenses, income, and summary information Patrick, Alexander
+Total Savings and Debt: Users can view their total savings (total income - total expenses) to date. If the savings are negative, it's reported as total new debt. (Developer: Stephanie)
 
-4.)    summary information include : total income, total income for each type, total income for each month, total expense, total expense for each type, Mark
+Expense Report: Users can access a detailed report of all expenses and summary information for expenses. (Developers: Patrick, Alexander)
 
-5.)    total savings (total income- total expenses) to date, if the total savings are less than zero it should be reported as total new debt.        public void PrintFullreport(); Stephanie
+Income Report: Users can access a detailed report of all income and summary information for income. (Developer: Bryan)
 
-6.)    As  a user I would like to view a detailed report of all expenses, and summary information for expenses public void PrintExpensereport(); Patrick, Alexander
+Income Report by Type: Users can view a detailed report of income of a certain type and its summary. (Developer: Bryan)
 
-7.)    As  a user I would like to view a detailed report of all income, and summary information for income// public void PrintIncomereport(); Bryan
+Expense Report by Type: Users can view a detailed report of expenses of a certain type and its summary. (Developer: Mark)
 
-8.)    As  a user I would like to view a detailed report of income of a certain type, and summary information for income.  public void PrintIncomereportbyTpe(); Bryan
+Export Reports: Users can choose a report and export it as an external file (CSV or JSON). (All Developers)
 
-9.)    As  a user I would like to view a detailed report of expense of a certain type , and summary information for expenses. public void PrintExpensebyType(); Mark
+Currency Conversion: Users can view their current balance in a different currency and use a function to convert from foreign currency to USD. (Developer: Patrick)
 
-10.) As a user I would like to choose a report and export it as an external file (any type is fine preferences are csv or JSON) public void exportReport(String reportTitle);
+Load Multiple Expenses: Users can load multiple expenses from an external file at once. (Developer: Alexander)
 
-11.)  As a user I would like to view my current balance in a different currency Bonus : try to use the same convert function to convert from foreign currency to USD. public Currency convertForeignCurrency(Currency C, double amount); Patrick
+Load Multiple Income: Similar to expenses, users can load multiple income sources from an external file at once. (Developers: Patrick, Alexander)
 
-12.) As a user I would like to load multiple expenses from an external file all at once returning true if loaded successfully and false otherwise public boolean loadExpenseFile(String filePath); Alexander
+Estimate Savings for Item: Users can input an item and its price to get an estimate of the number of months needed to save up to buy it based on the current monthly savings. (Developer: Stephanie)
 
-13.) As a user I would like to load multiple income from an external file all at once returning true if loaded successfully and false otherwise public boolean loadIncomeFile(String filePath);
+Update Monthly Savings: An internal function updates monthly savings based on the latest added income and expenses. (Developer: Bryan)
 
-14.) As a user I would like to provide an item and a price and get an estimate in number of months needed to save up to buy this item. (based on current monthly saving.  public int whenCanIBuy(String itemname,double  price); Stephanie 
+How to Use
+Clone or download the repository and follow the instructions in the SCM Plan for setting up and running the project.
 
-15.) updates monthly savings based on latest added income and expenses. This is an internal function not called by the users.  Bonus: what is the most efficient way to call it (when?)? Bryan
-
-              public void updateMonthlySavings();
+Feel free to explore the code, contribute to the project, and enhance the features. Happy coding!
