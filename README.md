@@ -1,4 +1,5 @@
 # Wallet-Final Project
+
 Welcome to the repository for the Wallet-Final project, an expense and income tracking system aimed at helping users manage their financial data efficiently. This project has been developed by a dedicated team with diverse roles, including Scrum Master, Product Owner, Software Configuration Manager, and Software Developers.
 
 Project Information
@@ -43,6 +44,10 @@ Estimate Savings for Item: Users can input an item and its price to get an estim
 
 Update Monthly Savings: An internal function updates monthly savings based on the latest added income and expenses. (Developer: Bryan)
 
+How to Use
+Clone or download the repository and follow the instructions in the SCM Plan for setting up and running the project.
+
+Feel free to explore the code, contribute to the project, and enhance the features. Happy coding!
 How to Use
 Clone or download the repository and follow the instructions in the SCM Plan for setting up and running the project.
 
