@@ -1,4 +1,4 @@
-Wallet-Final Project
+# Wallet-Final Project
 Welcome to the repository for the Wallet-Final project, an expense and income tracking system aimed at helping users manage their financial data efficiently. This project has been developed by a dedicated team with diverse roles, including Scrum Master, Product Owner, Software Configuration Manager, and Software Developers.
 
 Project Information
